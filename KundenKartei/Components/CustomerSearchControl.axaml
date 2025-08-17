@@ -1,0 +1,144 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:KundenKartei.ViewModel"
+             mc:Ignorable="d" 
+             x:Class="KundenKartei.Components.CustomerSearchControl" x:DataType="vm:CustomerSearchControlViewModel">
+    <Design.DataContext>
+        <vm:CustomerSearchControlViewModel></vm:CustomerSearchControlViewModel>
+    </Design.DataContext>
+    <Border Background="{StaticResource Base3}" Margin="8,0" CornerRadius="0,16,16,16">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock FontSize="40" Foreground="{StaticResource Orange}">Kunden</TextBlock>
+            </StackPanel>
+            <Grid Grid.Row="1" Margin="32,0,32,16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="56"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Row="0" Grid.Column="0" Height="48" CornerRadius="16" MinWidth="100" Background="{StaticResource Base2}" Margin="8,16">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="48"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="48"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Column="0" Margin="8" ContentTemplate="{StaticResource SearchIcon}"></ContentControl>
+                        <TextBox VerticalContentAlignment="Center" x:Name="SearchBar" Foreground="{StaticResource Text1}" Grid.Column="1" FontSize="24" Background="Transparent" BorderBrush="Transparent" TextChanged="TextBox_OnTextChanged">
+                            <TextBox.Styles>
+                                <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                </Style>
+                                <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                </Style>
+                                <Style Selector="TextBox /template/ Border#PART_BorderElement">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                </Style>
+                            </TextBox.Styles>
+                        </TextBox>
+                        <ContentControl Grid.Column="2" Margin="8" ContentTemplate="{StaticResource CancelIcon}" PointerPressed="ClearInput" Cursor="Hand"></ContentControl>
+                    </Grid>
+                </Border>
+                <Button Grid.Row="0" Grid.Column="1" Margin="8,0" Background="Transparent" Width="234" Command="{Binding NewCustomerPress }" Cursor="Hand">
+                    <Button.Styles>
+                        <Style Selector="Button:pointerover /template/ ContentPresenter">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                        <Style Selector="Button:pressed /template/ ContentPresenter">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </Button.Styles>
+                    <Border  Height="48" CornerRadius="16" Background="{StaticResource Base2}" >
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                            <ContentControl ContentTemplate="{StaticResource AddIcon}" Height="32" Width="32" Margin="8,0,0,0"></ContentControl>
+                            <TextBlock VerticalAlignment="Center" Margin="8,0" FontSize="20" Foreground="{StaticResource Yellow}">Neuer Kunde</TextBlock>
+                        </StackPanel>
+                    </Border>    
+                </Button>
+                <Border Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" MinHeight="300" CornerRadius="16" MinWidth="300" Background="{StaticResource Base2}" Margin="8,0,16,0">
+                    <Grid>
+                        
+                        <Grid Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="2"></ColumnDefinition>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                                <ColumnDefinition Width="2"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="2"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="2"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="2"></ColumnDefinition>
+                                <ColumnDefinition Width="32"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Name" FontSize="20" Foreground="{StaticResource Text1}" Margin="16,4,0,0" VerticalAlignment="Center"/>
+                            <Border Grid.Row="0" Grid.Column="1" CornerRadius="2" Width="2" Background="{StaticResource Text1}" Margin="0,4,0,0"></Border>
+                            <TextBlock Grid.Row="0" Grid.Column="2" Text="Email" FontSize="20" Foreground="{StaticResource Text1}" Margin="16,4,0,0" VerticalAlignment="Center"/>
+                            <Border Grid.Row="0" Grid.Column="3" CornerRadius="2" Width="2" Background="{StaticResource Text1}" Margin="0,4,0,0"></Border>
+                            <TextBlock Grid.Row="0" Grid.Column="4" Text="Telefon" FontSize="20" Foreground="{StaticResource Text1}" Margin="16,4,0,0" VerticalAlignment="Center"/>
+                            <Border Grid.Row="0" Grid.Column="5" CornerRadius="2" Width="2" Background="{StaticResource Text1}" Margin="0,4,0,0"></Border>
+                            <TextBlock Grid.Row="0" Grid.Column="6" Text="Events" FontSize="20" Foreground="{StaticResource Text1}" Margin="0,4,16,0" VerticalAlignment="Center" TextAlignment="End"/>
+                            <Border Grid.Row="0" Grid.Column="7" CornerRadius="2" Width="2" Background="{StaticResource Text1}" Margin="0,4,0,0"></Border>
+                            <TextBlock Grid.Row="0" Grid.Column="8" Text="Verkäufe" FontSize="20" Foreground="{StaticResource Text1}" Margin="0,4,16,0" VerticalAlignment="Center" TextAlignment="End"/>
+                            <Border Grid.Row="0" Grid.Column="9" CornerRadius="2" Width="2" Background="{StaticResource Text1}" Margin="0,4,0,0"></Border>
+                            
+                            <ScrollViewer Grid.Column="0" Grid.ColumnSpan="11" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                <ListBox Background="Transparent" ItemsSource="{Binding Customers}" Padding="0">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="2"></ColumnDefinition>
+                                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="2"></ColumnDefinition>
+                                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="2"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="2"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="2"></ColumnDefinition>
+                                                    <ColumnDefinition Width="32"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0" FontSize="16" Foreground="{StaticResource Yellow}" Background="Aqua" Margin="0,4,0,0"  Text="{Binding NameLabel}" VerticalAlignment="Center"></TextBlock>
+                                                <TextBlock Grid.Column="2" FontSize="16" Foreground="{StaticResource Yellow}" Margin="20,0,0,0" Text="{Binding EmailLabel}" VerticalAlignment="Center"></TextBlock>
+                                                <TextBlock Grid.Column="4" FontSize="16" Foreground="{StaticResource Yellow}" Margin="20,0,0,0" Text="{Binding PhoneLabel}" VerticalAlignment="Center"></TextBlock>
+                                                <TextBlock Grid.Column="6" FontSize="16" Foreground="{StaticResource Yellow}" Margin="0,0,0,0" Text="{Binding EventEarnings}" VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="End"></TextBlock>
+                                                <TextBlock Grid.Column="8" FontSize="16" Foreground="{StaticResource Yellow}" Margin="0,0,0,0" Text="{Binding SalesEarnings}" VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="End"></TextBlock>
+                                                
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </ScrollViewer>
+                        </Grid>
+                        
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

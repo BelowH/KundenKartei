@@ -1,0 +1,67 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="KundenKartei.App"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.Styles>
+        <FluentTheme />
+    </Application.Styles>
+    <Application.Resources>
+        <!-- Solarized Colors -->
+        <SolidColorBrush x:Key="Base1" Color="#93a1a1"></SolidColorBrush>             
+        <SolidColorBrush x:Key="Base2" Color="#eee8d5"></SolidColorBrush>             
+        <SolidColorBrush x:Key="Base3" Color="#fdf6e3"></SolidColorBrush>             
+        <SolidColorBrush x:Key="Yellow" Color="#b58900"></SolidColorBrush>
+        <SolidColorBrush x:Key="Orange" Color="#cb4b16"></SolidColorBrush>
+        <SolidColorBrush x:Key="Red" Color="#dc322f"></SolidColorBrush>
+        <SolidColorBrush x:Key="Magenta" Color="#d33682"></SolidColorBrush>
+        <SolidColorBrush x:Key="Violet" Color="#6c71c4"></SolidColorBrush>
+        <SolidColorBrush x:Key="Blue" Color="#268bd2"></SolidColorBrush>
+        <SolidColorBrush x:Key="Cyan" Color="#2aa198"></SolidColorBrush>
+        <SolidColorBrush x:Key="Green" Color="#859900"></SolidColorBrush>
+        <SolidColorBrush x:Key="Text1" Color="#839496"></SolidColorBrush>
+        
+        <FontFamily x:Key="Font">avares://KundenKartei/res/font/ADLaMDisplay-Regular.ttf#ADLaM Display</FontFamily>
+
+        <DataTemplate x:Key="CancelIcon" >
+            <Image Source="avares://KundenKartei/res/icon/cancel.png"></Image>    
+        </DataTemplate>
+        <DataTemplate x:Key="CardIcon">
+            <Image  Source="avares://KundenKartei/res/icon/card.png"></Image>
+        </DataTemplate>
+        <DataTemplate x:Key="CashIcon">
+            <Image  Source="avares://KundenKartei/res/icon/cash.png"></Image>
+        </DataTemplate>
+        <DataTemplate x:Key="CheckIcon">
+            <Image Source="avares://KundenKartei/res/icon/check.png"></Image>
+        </DataTemplate>
+        <DataTemplate x:Key="CustomerIcon">
+            <Image  Source="avares://KundenKartei/res/icon/customer.png"></Image>
+        </DataTemplate>
+        <DataTemplate x:Key="CustomerSelectedIcon">
+            <Image Source="avares://KundenKartei/res/icon/customer_selected.png"></Image>
+        </DataTemplate>
+        <DataTemplate x:Key="DeleteIcon">
+            <Image Source="avares://KundenKartei/res/icon/delete.png"></Image>
+        </DataTemplate>
+        <DataTemplate x:Key="EventIcon">
+            <Image Source="avares://KundenKartei/res/icon/event.png"></Image>
+        </DataTemplate>
+        <DataTemplate x:Key="EventSelectedIcon">
+            <Image Source="avares://KundenKartei/res/icon/event_selected.png"></Image>
+        </DataTemplate>
+        <DataTemplate x:Key="SaleIcon">
+            <Image Source="avares://KundenKartei/res/icon/sale.png"></Image>
+        </DataTemplate>
+        <DataTemplate x:Key="SaleSelectedIcon">
+            <Image Source="avares://KundenKartei/res/icon/sale_selected.png"></Image>
+        </DataTemplate>
+        <DataTemplate x:Key="SearchIcon">
+            <Image Source="avares://KundenKartei/res/icon/search.png"></Image>
+        </DataTemplate>
+        <DataTemplate x:Key="AddIcon">
+            <Image Source="avares://KundenKartei/res/icon/add.png"></Image>
+        </DataTemplate>
+    </Application.Resources>
+</Application>

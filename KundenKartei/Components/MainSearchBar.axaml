@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="690" d:DesignHeight="48"
+             x:Class="KundenKartei.Components.MainSearchBar">
+    
+    <Border Background="{StaticResource Base2}" Width="690" Height="48" CornerRadius="16"> 
+        <Grid ColumnDefinitions="48,*,48">
+            <ContentControl Grid.Column="0" Content="{StaticResource SearchIcon}" Height="32" Width="32"></ContentControl>
+            <AutoCompleteBox Grid.Column="1" x:Name="AutoCompleteBox" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" FontSize="24" FontFamily="{StaticResource Font}" ></AutoCompleteBox>
+            <ContentControl Grid.Column="2" Content="{StaticResource CancelIcon}" Height="32" Width="32" PointerPressed="InputElement_OnPointerPressed" Cursor="Hand"></ContentControl>
+        </Grid>
+    </Border>
+</UserControl>

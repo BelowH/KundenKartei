@@ -1,0 +1,90 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:KundenKartei"
+        xmlns:components="clr-namespace:KundenKartei.Components"
+        xmlns:viewModel="clr-namespace:KundenKartei.ViewModel"
+        mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="832"
+        x:Class="KundenKartei.MainWindow"
+        Title="KundenKartei"
+        x:DataType="vm:MainWindowViewModel" Background="{StaticResource Base2}">
+    
+    <Design.DataContext>
+        <vm:MainWindowViewModel></vm:MainWindowViewModel>
+    </Design.DataContext>
+    
+    <Window.DataTemplates>
+        <DataTemplate DataType="{x:Type viewModel:CustomerSearchControlViewModel}">
+            <components:CustomerSearchControl></components:CustomerSearchControl>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:EventSearchControlViewModel}">
+            <components:EventSearchControl></components:EventSearchControl>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SalesSearchControlViewModel}">
+            <components:SalesSearchControl></components:SalesSearchControl>
+        </DataTemplate>
+    </Window.DataTemplates>
+    
+    <Grid RowDefinitions="70,*" Margin="16">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top" Margin="0,8,0,0">
+            <Button Command="{Binding ShowCustomer}" BorderBrush="Transparent" Background="Transparent" VerticalAlignment="Top"  Padding="8,0">
+                <Button.Styles>
+                    <Style Selector="Button:pointerover /template/ ContentPresenter">
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                    <Style Selector="Button:pressed /template/ ContentPresenter">
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                </Button.Styles>
+                
+                <Border Width="200" Height="{Binding CustomerBorderHeight}" Background="{StaticResource Base3}" CornerRadius="{Binding CustomerCornerRadius}" VerticalAlignment="Top">
+                    
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="4,8,0,0">
+                        <ContentControl ContentTemplate="{Binding CustomerIcon}" Height="32" Width="32" Margin="4,0"></ContentControl> 
+                        <TextBlock FontSize="24" Foreground="{Binding CustomerColor}" VerticalAlignment="Center" Margin="8,0">Kunden</TextBlock>
+                    </StackPanel>
+                </Border>
+            </Button>
+            <Button Command="{Binding ShowEvent}" BorderBrush="Transparent" Background="Transparent" VerticalAlignment="Top" Padding="8,0">
+                <Button.Styles>
+                    <Style Selector="Button:pointerover /template/ ContentPresenter">
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                    <Style Selector="Button:pressed /template/ ContentPresenter">
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                </Button.Styles>
+                
+                <Border Width="200" Height="{Binding EventBorderHeight}" Background="{StaticResource Base3}" CornerRadius="{Binding EventCornerRadius}" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top"  Margin="4,8,0,0">
+                        <ContentControl  ContentTemplate="{Binding EventIcon}" Height="32" Width="32" Margin="4,0"></ContentControl>
+                        <TextBlock FontSize="24" Foreground="{Binding EventColor}" VerticalAlignment="Center" Margin="8,0">Events</TextBlock>
+                    </StackPanel>
+                </Border>
+            </Button>
+            <Button Command="{Binding ShowSales}" BorderBrush="Transparent" Background="Transparent" VerticalAlignment="Top" Padding="8,0">
+                <Button.Styles>
+                    <Style Selector="Button:pointerover /template/ ContentPresenter">
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                    <Style Selector="Button:pressed /template/ ContentPresenter">
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                </Button.Styles>
+                
+                <Border Width="200" Height="{Binding SalesBorderHeight}" Background="{StaticResource Base3}" CornerRadius="{Binding SalesCornerRadius}" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="4,8,0,0">
+                        <ContentControl ContentTemplate="{Binding SalesIcon}" Height="32" Width="32" Margin="4,0"></ContentControl>
+                        <TextBlock FontSize="24" Foreground="{Binding SalesColor}" VerticalAlignment="Center" Margin="8,0">Verkäufe</TextBlock>
+                    </StackPanel>
+                </Border>
+            </Button>
+        </StackPanel>
+        <Border Grid.Row="1">
+            <ContentControl Content="{Binding CurrentContent}"></ContentControl>
+        </Border>
+        
+    </Grid>
+    
+</Window>
