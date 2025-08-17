@@ -108,6 +108,7 @@
                             <ScrollViewer Grid.Column="0" Grid.ColumnSpan="11" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                                 <ListBox Background="Transparent" ItemsSource="{Binding Customers}" Padding="0">
                                     <ListBox.ItemTemplate>
+                                        
                                         <DataTemplate>
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
