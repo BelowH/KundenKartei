@@ -24,6 +24,12 @@
         <DataTemplate DataType="{x:Type vm:SalesSearchControlViewModel}">
             <components:SalesSearchControl></components:SalesSearchControl>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:NewCustomerControlViewModel}">
+            <components:NewCustomerControl></components:NewCustomerControl>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:CustomerDetailControlViewModel}">
+            <components:CustomerDetailControl></components:CustomerDetailControl>
+        </DataTemplate>
     </Window.DataTemplates>
     
     <Grid RowDefinitions="70,*" Margin="16">

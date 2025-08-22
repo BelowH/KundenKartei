@@ -3,8 +3,11 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using KundenKartei.Components;
 using KundenKartei.Database;
 using KundenKartei.Services;
+using KundenKartei.State;
+using KundenKartei.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -41,8 +44,6 @@ public partial class App : Application
             desktop.MainWindow = new MainWindow();
         }
         
-        
-        
         base.OnFrameworkInitializationCompleted();
     }
 
@@ -51,8 +52,21 @@ public partial class App : Application
     {
         services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=app.db"));
 
+        services.AddSingleton<GlobalDisplayState>();
+        
         services.AddTransient<ICustomerService, CustomerService>();
         services.AddTransient<IEventService, EventService>();
+
+        services.AddTransient<MainWindowViewModel>();
+        services.AddTransient<CustomerSearchControlViewModel>();
+        services.AddTransient<EventSearchControlViewModel>();
+        services.AddTransient<SalesSearchControlViewModel>();
+        services.AddTransient<NewCustomerControlViewModel>();
+        
+        services.AddTransient<CustomerSearchControl>();
+        services.AddTransient<EventSearchControl>();
+        services.AddTransient<SalesSearchControl>();
+        services.AddTransient<NewCustomerControl>();
         
         services.AddTransient<MainWindow>();
 

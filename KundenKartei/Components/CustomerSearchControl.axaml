@@ -124,12 +124,12 @@
                                                     <ColumnDefinition Width="2"></ColumnDefinition>
                                                     <ColumnDefinition Width="32"></ColumnDefinition>
                                                 </Grid.ColumnDefinitions>
-                                                <TextBlock Grid.Column="0" FontSize="16" Foreground="{StaticResource Yellow}" Background="Aqua" Margin="0,4,0,0"  Text="{Binding NameLabel}" VerticalAlignment="Center"></TextBlock>
+                                                <TextBlock Grid.Column="0" FontSize="16" Foreground="{StaticResource Yellow}" Margin="0,4,0,0"  Text="{Binding NameLabel}" VerticalAlignment="Center"></TextBlock>
                                                 <TextBlock Grid.Column="2" FontSize="16" Foreground="{StaticResource Yellow}" Margin="20,0,0,0" Text="{Binding EmailLabel}" VerticalAlignment="Center"></TextBlock>
                                                 <TextBlock Grid.Column="4" FontSize="16" Foreground="{StaticResource Yellow}" Margin="20,0,0,0" Text="{Binding PhoneLabel}" VerticalAlignment="Center"></TextBlock>
                                                 <TextBlock Grid.Column="6" FontSize="16" Foreground="{StaticResource Yellow}" Margin="0,0,0,0" Text="{Binding EventEarnings}" VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="End"></TextBlock>
                                                 <TextBlock Grid.Column="8" FontSize="16" Foreground="{StaticResource Yellow}" Margin="0,0,0,0" Text="{Binding SalesEarnings}" VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="End"></TextBlock>
-                                                
+                                                <ContentPresenter Tag="{Binding CustomerId}" Grid.Column="10" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,0,0,0" Height="24" Width="24" ContentTemplate="{StaticResource DeleteIcon}" Cursor="Hand" PointerPressed="DeleteItemPressed"></ContentPresenter>
                                             </Grid>
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>

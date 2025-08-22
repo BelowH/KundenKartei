@@ -1,15 +1,40 @@
+using System;
+using System.Collections.Generic;
 using System.Net.Mime;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml.MarkupExtensions;
 using Avalonia.Markup.Xaml.Templates;
 using Avalonia.Media;
+using KundenKartei.Domain;
+using KundenKartei.State;
 using KundenKartei.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
+using static KundenKartei.Domain.EnumCollection;
 
 namespace KundenKartei;
 
 public class MainWindowViewModel : ViewModelBase
 {
+    
+    private Dictionary<SubMask, ViewModelBase> _subMasks = new()
+    {
+        { SubMask.NewCustomer, new NewCustomerControlViewModel() },
+        { SubMask.CustomerDetail , new CustomerDetailControlViewModel()}
+    };
+    
+    
+    private ViewModelBase? _currentContent;
+    public ViewModelBase CurrentContent
+    {
+        get => _currentContent!;
+        set => SetProperty(ref _currentContent, value);
+    }
+    
+    private ViewModelBase? _previousContent;
+    
+    
+#region TabStyling
 
     public enum SelectedTab
     {
@@ -17,14 +42,9 @@ public class MainWindowViewModel : ViewModelBase
         EVENT,
         SALES
     }
-    
-    private readonly SolidColorBrush _selectedColor = (Application.Current!.FindResource("Orange") as SolidColorBrush)!; 
-    private readonly SolidColorBrush _unselectedColor = (Application.Current!.FindResource("Yellow") as SolidColorBrush)!;
-    
-    private readonly CornerRadius _unselectedCornerRadius = new CornerRadius(16);
-    private readonly CornerRadius _selectedCornerRadius = new CornerRadius(16, 16, 0, 0);
-    
+
     private SelectedTab _selectedTab;
+        
     public SelectedTab SelectedTabItem
     {
         get => _selectedTab;
@@ -49,13 +69,13 @@ public class MainWindowViewModel : ViewModelBase
             }
         }
     }
+
+    private readonly SolidColorBrush _selectedColor = (Application.Current!.FindResource("Orange") as SolidColorBrush)!; 
+    private readonly SolidColorBrush _unselectedColor = (Application.Current!.FindResource("Yellow") as SolidColorBrush)!;
     
-    private ViewModelBase? _currentContent;
-    public ViewModelBase CurrentContent
-    {
-        get => _currentContent!;
-        set => SetProperty(ref _currentContent, value);
-    }
+    private readonly CornerRadius _unselectedCornerRadius = new CornerRadius(16);
+    private readonly CornerRadius _selectedCornerRadius = new CornerRadius(16, 16, 0, 0);
+    
     
     public int CustomerBorderHeight => SelectedTabItem == SelectedTab.CUSTOMER ? 70 : 48;
     public CornerRadius CustomerCornerRadius => SelectedTabItem == SelectedTab.CUSTOMER ? _selectedCornerRadius : _unselectedCornerRadius;
@@ -73,12 +93,6 @@ public class MainWindowViewModel : ViewModelBase
     public SolidColorBrush SalesColor => SelectedTabItem == SelectedTab.SALES ? _selectedColor : _unselectedColor;
     public DataTemplate SalesIcon => (SelectedTabItem == SelectedTab.SALES ? Application.Current?.FindResource("SaleSelectedIcon") as DataTemplate : Application.Current?.FindResource("SaleIcon") as DataTemplate)!;
     
-    public MainWindowViewModel()
-    {
-        SelectedTabItem = SelectedTab.CUSTOMER;
-        CurrentContent = new CustomerSearchControlViewModel();
-    }
-    
     public void ShowCustomer()
     {
         SelectedTabItem = SelectedTab.CUSTOMER;
@@ -95,5 +109,45 @@ public class MainWindowViewModel : ViewModelBase
     {
         SelectedTabItem = SelectedTab.SALES;
         CurrentContent = new SalesSearchControlViewModel();
+    }
+    
+#endregion
+
+
+    private readonly GlobalDisplayState _globalDisplayState;
+
+    public MainWindowViewModel()
+    {
+        IServiceProvider serviceProvider = ((App)Application.Current!).ServiceProvider!;
+        _globalDisplayState = serviceProvider.GetRequiredService<GlobalDisplayState>();
+        
+        _globalDisplayState.OnSubMaskChanged += OnSubmaskChanged;
+        _globalDisplayState.OnNavigateToCustomerDetail += GlobalDisplayStateOnOnNavigateToCustomerCustomerDetail;
+        _globalDisplayState.OnBack += OnBack;
+        
+        SelectedTabItem = SelectedTab.CUSTOMER;
+        CurrentContent = new CustomerSearchControlViewModel();
+
+    }
+
+    private void GlobalDisplayStateOnOnNavigateToCustomerCustomerDetail(object? sender, string id)
+    {
+        _previousContent = CurrentContent;
+        CurrentContent = new CustomerDetailControlViewModel(){ CustomerId = id};
+    }
+
+    private void OnBack(object? sender, EventArgs e)
+    {
+        if (_previousContent != null)
+        {
+            CurrentContent = _previousContent;
+            _previousContent = null;
+        }
+    }
+
+    private void OnSubmaskChanged(object? sender, SubMask maskToChangeTo)
+    {
+        _previousContent = CurrentContent;
+        CurrentContent = _subMasks[maskToChangeTo];
     }
 }

@@ -1,0 +1,62 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+             xmlns:components="clr-namespace:KundenKartei.Components"
+             mc:Ignorable="d"
+             x:Class="KundenKartei.Components.LabeledTextField"
+             x:DataType="components:LabeledTextField" x:Name="Root">
+
+    <Grid ColumnDefinitions="128,*" RowDefinitions="Auto,Auto">
+        <Design.DataContext>
+            <components:LabeledTextField />
+        </Design.DataContext>
+
+
+        <TextBlock Grid.Column="0"
+                   Grid.Row="0"
+                   Text="{Binding #Root.LabelText}" TextAlignment="Right"
+                   VerticalAlignment="Center" FontSize="24" Foreground="{StaticResource Yellow}" HorizontalAlignment="Right"
+                   Margin="0,0,10,0" />
+
+
+        <TextBox x:Name="PART_TextBox"
+                 Grid.Column="1"
+                 Grid.Row="0"
+                 Text="{Binding #Root.Text, Mode=TwoWay}"
+                 CornerRadius="8"  FontSize="20"
+                 Padding="10,8" Background="{StaticResource Base2}" Foreground="{StaticResource Text1}">
+            <TextBox.Styles>
+                <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+                    <Setter Property="Background" Value="{StaticResource Base2}"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource Base1}"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                </Style>
+                <Style Selector="TextBox:hover /template/ Border#PART_BorderElement">
+                    <Setter Property="Background" Value="{StaticResource Base2}"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource Base1}"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                </Style>
+                <Style Selector="TextBox">
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="BorderThickness" Value="0" />
+                </Style>
+                <Style Selector="TextBox.error">
+                    <Setter Property="BorderBrush" Value="Red" />
+                    <Setter Property="BorderThickness" Value="2" />
+                </Style>
+            </TextBox.Styles>
+        </TextBox>
+
+
+        <TextBlock Grid.Column="1"
+                   Grid.Row="1"
+                   Text="{Binding #Root.ErrorMessage}"
+                   Foreground="Red"
+                   FontSize="12"
+                   Margin="0,4,0,0"
+                   IsVisible="{Binding #Root.HasError}" />
+
+    </Grid>
+</UserControl>

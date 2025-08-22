@@ -1,0 +1,56 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:KundenKartei.ViewModel"
+             xmlns:components="clr-namespace:KundenKartei.Components"
+             mc:Ignorable="d" d:DesignWidth="1248"
+             x:Class="KundenKartei.Components.NewCustomerControl" x:DataType="vm:NewCustomerControlViewModel">
+    <Design.DataContext>
+        <vm:NewCustomerControlViewModel/>
+    </Design.DataContext>
+    <Border Background="{StaticResource Base3}" Margin="8,0" CornerRadius="0,16,16,16">
+        <Grid RowDefinitions="150,*,Auto">
+            <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock FontSize="40" Foreground="{StaticResource Orange}">Neuer Kunde</TextBlock>
+            </StackPanel>
+            <Grid Grid.Row="1" RowDefinitions="50,*" ColumnDefinitions="*,2,*" Margin="16,0">
+                <components:LabeledTextField Grid.Row="0" Grid.Column="0" LabelText="Nachname:" Text="{Binding Name, Mode=TwoWay}" HasError="{Binding NameHasError}" ErrorMessage="{Binding NameErrorMessage}" Margin="8,0"/>
+                <components:LabeledTextField Grid.Row="0" Grid.Column="2" LabelText="Vorname:" Text="{Binding Firstname, Mode=TwoWay}" HasError="{Binding FirstnameHasError }" ErrorMessage="{Binding NameErrorMessage}" Margin="8,0"></components:LabeledTextField>
+                
+                <Grid Grid.Row="1" Grid.Column="0" RowDefinitions="64,Auto,Auto,Auto,Auto,Auto" Margin="32,0">
+                    <TextBlock Grid.Row="0" FontSize="32" Foreground="{StaticResource Orange}" VerticalAlignment="Center" HorizontalAlignment="Center">Addresse</TextBlock>
+                    <components:LabeledTextField Grid.Row="1" LabelText="Straße:" Margin="0,8" Text="{Binding Street, Mode=TwoWay}" ></components:LabeledTextField>
+                    <components:LabeledTextField Grid.Row="2" LabelText="Haus:" Margin="0,8" Text="{Binding HouseNumber, Mode=TwoWay}"></components:LabeledTextField>
+                    <components:LabeledTextField Grid.Row="3" LabelText="Ort:" Margin="0,8" Text="{Binding City, Mode=TwoWay}"></components:LabeledTextField>
+                    <components:LabeledTextField Grid.Row="4" LabelText="PLZ:" Margin="0,8" Text="{Binding ZipCode, Mode=TwoWay}"></components:LabeledTextField>
+                    <components:LabeledTextField Grid.Row="5" LabelText="Land:" Margin="0,8" Text="{Binding Country, Mode=TwoWay}"></components:LabeledTextField>
+                </Grid>
+                <Border Grid.Row="1" Grid.Column="1" Width="2" CornerRadius="2" Background="{StaticResource Base2}"></Border>
+                <Grid Grid.Row="1" Grid.Column="2" RowDefinitions="64,Auto,Auto,Auto,Auto,Auto">
+                    <TextBlock Grid.Row="0" FontSize="32" Foreground="{StaticResource Orange}" VerticalAlignment="Center" HorizontalAlignment="Center">Kontakt</TextBlock>
+                    <components:LabeledTextField Grid.Row="1" LabelText="E-Mail:" Margin="0,8" Text="{Binding Email, Mode=TwoWay}" HasError="{Binding EmailHasError}" ErrorMessage="{Binding EmailErrorMessage}"></components:LabeledTextField>
+                    <components:LabeledTextField Grid.Row="2" LabelText="Telefon:" Margin="0,8" Text="{Binding Phone, Mode=TwoWay}"></components:LabeledTextField>
+                    <components:LabeledTextField Grid.Row="3" LabelText="Handy:" Margin="0,8" Text="{Binding Mobile, Mode=TwoWay}"></components:LabeledTextField>
+                    <components:LabeledTextField Grid.Row="4" LabelText="Konto Nr.:" Margin="0,8" Text="{Binding AccountNumber, Mode=TwoWay}"></components:LabeledTextField>
+                    
+                </Grid> 
+            </Grid>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Padding="0" Background="Transparent" Margin="16, 16" Cursor="Hand" Command="{Binding CreateCustomer}">
+                    <Button.Styles>
+                        <Style Selector="Button:pointerover /template/ ContentPresenter">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                        <Style Selector="Button:pressed /template/ ContentPresenter">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </Button.Styles>
+                    <Border Background="{StaticResource Orange}" CornerRadius="16">
+                        <TextBlock FontSize="24" Foreground="{StaticResource Base3}" Margin="24,4">Erstellen</TextBlock>
+                    </Border>    
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

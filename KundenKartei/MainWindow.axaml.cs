@@ -1,5 +1,8 @@
+using System;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using KundenKartei.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace KundenKartei;
 
